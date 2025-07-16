@@ -13,6 +13,7 @@ class EnvironmentVariables {
   NODE_ENV: Environment;
   PORT: number;
 
+  SUPABASE_PROJECT_ID: string;
   SUPABASE_URL: string;
   SUPABASE_ANON_KEY: string;
 }
