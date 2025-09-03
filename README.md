@@ -122,7 +122,7 @@ npm run supabase:types
 - `src/auth/` - Auth module (JWT, guards, strategies)
 - `src/common/` - Common utilities, logger, supabase service
 - `src/config/` - Environment config
-- `src/modules/` - Example feature modules
+- `src/modules/` - features modules
 - `src/utils/` - Utilities and filters
 - `scripts/` - Utility scripts (e.g., type generation)
 
