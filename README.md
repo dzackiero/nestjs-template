@@ -157,42 +157,47 @@ $ npm run test:e2e
 $ npm run test:cov
 ```
 
-## Deployment
+## Using Docker
 
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
+You can run the application in a Docker container for local development or production. Make sure you have Docker installed.
 
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
-
+### Build the Docker image
 ```bash
-$ npm install -g @nestjs/mau
-$ mau deploy
+docker build -t nestjs-template .
 ```
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+### Run the container
+```bash
+docker run --env-file .env -p 3000:3000 nestjs-template
+```
 
-## Resources
+This will start the app on port 3000 (or the port specified in your `.env`).
 
-Check out a few resources that may come in handy when working with NestJS:
+## Using PM2
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+PM2 is a process manager for Node.js applications. You can use it to run and manage your NestJS app in production or development.
 
-## Support
+### Install PM2 globally
+```bash
+npm install -g pm2
+```
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+### Start the app with PM2
+```bash
+pm2 start ecosystem-production.config.js
+```
 
-## Stay in touch
+Or for staging:
+```bash
+pm2 start ecosystem-staging.config.js
+```
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+### Monitor and manage
+```bash
+pm2 status
+pm2 logs
+pm2 restart <app-name>
+pm2 stop <app-name>
+```
 
-## License
-
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+Refer to the [PM2 documentation](https://pm2.keymetrics.io/) for more options.
