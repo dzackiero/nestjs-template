@@ -9,8 +9,14 @@ export enum Environment {
   Staging = 'staging',
 }
 
+export enum LogFormat {
+  Text = 'text',
+  Json = 'json',
+}
+
 class EnvironmentVariables {
   NODE_ENV: Environment;
+  LOG_FORMAT: LogFormat;
   PORT: number;
 
   SUPABASE_PROJECT_ID: string;
