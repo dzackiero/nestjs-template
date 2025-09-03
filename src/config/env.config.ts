@@ -1,5 +1,6 @@
 import { plainToInstance } from 'class-transformer';
-import { validateSync } from 'class-validator';
+import { IsString, validateSync } from 'class-validator';
+import { IsEnum, IsNumber, IsOptional } from 'class-validator';
 
 export enum Environment {
   Local = 'local',
@@ -15,19 +16,31 @@ export enum LogFormat {
 }
 
 class EnvironmentVariables {
+  @IsEnum(Environment)
   NODE_ENV: Environment;
-  LOG_FORMAT: LogFormat;
+
+  @IsEnum(LogFormat)
+  @IsOptional()
+  LOG_FORMAT: LogFormat = LogFormat.Text;
+
+  @IsNumber()
   PORT: number;
 
+  @IsString()
   SUPABASE_PROJECT_ID: string;
+
+  @IsString()
   SUPABASE_URL: string;
-  SUPABASE_ANON_KEY: string;
+
+  @IsString()
+  SUPABASE_SERVICE_KEY: string;
 }
 
 export function validate(config: Record<string, unknown>) {
   const validatedConfig = plainToInstance(EnvironmentVariables, config, {
     enableImplicitConversion: true,
   });
+
   const errors = validateSync(validatedConfig, {
     skipMissingProperties: false,
   });

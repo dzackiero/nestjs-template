@@ -23,7 +23,112 @@
 
 ## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+This is a NestJS + Supabase template for building scalable server-side applications with TypeScript, JWT authentication, logging, and more.
+
+---
+
+## Requirements
+
+- Node.js >= 18.x
+- npm >= 9.x
+- Supabase CLI ([docs](https://supabase.com/docs/guides/cli))
+- (Recommended) Docker (for running Supabase locally)
+
+## Environment Variables
+
+Copy `.env.example` to `.env` and fill in the required values:
+
+```bash
+cp .env.example .env
+```
+
+| Variable              | Description                       |
+|-----------------------|-----------------------------------|
+| NODE_ENV              | Environment (local, development)  |
+| LOG_FORMAT            | text or json                      |
+| PORT                  | Port to run the server            |
+| SUPABASE_PROJECT_ID   | Supabase project ID               |
+| SUPABASE_URL          | Supabase API URL                  |
+| SUPABASE_ANON_KEY     | Supabase anon/public key          |
+
+## Installation
+
+```bash
+npm install
+```
+
+## Supabase Local Setup
+
+To run Supabase locally for development:
+
+1. Install Supabase CLI (if not installed):
+  ```bash
+  npm install -g supabase
+  ```
+2. Start Supabase local development:
+  ```bash
+  supabase start
+  ```
+  This will start Supabase locally with Postgres, Auth, Storage, and other services.
+3. (Optional) Stop Supabase:
+  ```bash
+  supabase stop
+  ```
+
+Refer to [Supabase CLI docs](https://supabase.com/docs/guides/cli/local-development) for more details.
+
+## Compile and run the project
+
+```bash
+# development
+npm run start
+
+# watch mode
+npm run start:dev
+
+# production mode
+npm run start:prod
+```
+
+## Run tests
+
+```bash
+# unit tests
+npm run test
+
+# e2e tests
+npm run test:e2e
+
+# test coverage
+npm run test:cov
+```
+
+## Lint & Format
+
+```bash
+npm run lint
+npm run format
+```
+
+## Generate Supabase Types
+
+```bash
+npm run supabase:types
+```
+
+## Folder Structure
+
+- `src/` - Main source code
+- `src/auth/` - Auth module (JWT, guards, strategies)
+- `src/common/` - Common utilities, logger, supabase service
+- `src/config/` - Environment config
+- `src/modules/` - Example feature modules
+- `src/utils/` - Utilities and filters
+- `scripts/` - Utility scripts (e.g., type generation)
+
+## License
+
+MIT
 
 ## Project setup
 
@@ -34,14 +139,9 @@ $ npm install
 ## Compile and run the project
 
 ```bash
-# development
-$ npm run start
 
 # watch mode
 $ npm run start:dev
-
-# production mode
-$ npm run start:prod
 ```
 
 ## Run tests
